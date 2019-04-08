@@ -18,20 +18,23 @@
                 <th>ID</th>
                 <th>Full Name</th>
                 <th>Email</th>
-                <th>Created At</th>
+                <th>Created On</th>
                 <th>Actions</th>
             </thead>
 
             {% for one_user in users_html %}
 
                 <tr>
+                    <td>{{one_user["id"]}}</td>
                     <td>{{one_user["name"]}}</td>
                     <td>{{one_user["email"]}}</td>
                     <td>{{one_user["date"]}}</td>
                     <td>
-                        <a href="/users/{{one_user['id']}}">Show</a>
-                        <a href="/users/{{one_user['id']/edit}}">Edit</a>
-                        <a href="/users/{{one_user['id]/delete}}'">Delete</a>
+                        <p>
+                            <a href="/users/{{one_user['id']}}">Show</a> | 
+                            <a href="/users/{{one_user['id']}}/edit">Edit</a> | 
+                            <a href="/users/{{one_user['id']}}/delete">Delete</a>
+                        </p>
                     </td>
                 </tr>
 

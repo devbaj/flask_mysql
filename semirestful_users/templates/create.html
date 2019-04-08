@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="banner">
+
+            <h1>Add a New User</h1>
+            <a href="/users">Home</a>
+
+        </div>
+
+        <div class="user-entry">
+            <form action="/process-add-user" method="post">
+                <p>First Name:</p>
+                <input type="text" name="fname" id="fname">
+                <p>Last Name:</p>
+                <input type="text" name="lname" id="lname">
+                <p>Email:</p>
+                <input type="text" name="email" id="email">
+                <input type="submit" value="Create">
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>
