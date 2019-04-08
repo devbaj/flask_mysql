@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Read All</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <h1>All Users</h1>
+
+        <table class="users">
+            
+            <thead>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </thead>
+
+            {% for one_user in users_html %}
+
+                <tr>
+                    <td>{{one_user["name"]}}</td>
+                    <td>{{one_user["email"]}}</td>
+                    <td>{{one_user["date"]}}</td>
+                    <td>
+                        <a href="/users/{{one_user['id']}}">Show</a>
+                        <a href="/users/{{one_user['id']/edit}}">Edit</a>
+                        <a href="/users/{{one_user['id]/delete}}'">Delete</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+        </table>
+
+        <a href="/add-user">Add a New User</a>
+
+    </div>
+
+</body>
+</html>
