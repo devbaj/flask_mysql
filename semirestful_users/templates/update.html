@@ -11,24 +11,24 @@
     <div class="container">
 
         <div class="banner">
-            <h1>Edit User {{}}</h1>
+            <h1>Edit User {{id_html}}</h1>
             <a href="/users">Home</a>
         </div>
 
     </div>
 
     <div class="edit-fields">
-        <form action="/proccess-edit-user" method="post">
+        <form action="/process-edit-user/{{id_html}}" method="post">
             <p>First Name:</p>
-            <input type="text" name="fname" id="fname" placeholder="{{}}">
+            <input type="text" name="fname" id="fname" value="{{user_html['first_name']}}">
             <p>Last Name:</p>
-            <input type="text" name="lname" id="lname" placeholder="{{}}">
+            <input type="text" name="lname" id="lname" value="{{user_html['last_name']}}">
             <p>Email:</p>
-            <input type="text" name="email" id="email" placeholder="{{}}">
+            <input type="text" name="email" id="email" value="{{user_html['email']}}">
             <input type="submit" value="Update">
         </form>
 
-        <a href="users/{{}}">Show User</a>
+        <a href="/users/{{id_html}}">Show User</a>
 
     </div>
 

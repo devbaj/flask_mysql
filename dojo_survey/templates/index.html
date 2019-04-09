@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojo Survey Index</title>
+
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="container">
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="flashes">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="/process-survey" method="post">
+            <p>Your Name:</p>
+            <input type="text" name="name" id="name">
+            <p>Dojo Location:</p>
+            <select name="location" id="location">
+                <option value="Seattle">Seattle</option>
+                <option value="San Jose">San Jose</option>
+                <option value="Boise">Boise</option>
+                <option value="Washington, D.C.">Washington, D.C.</option>
+            </select>
+            <p>Favorite Language:</p>
+            <select name="lang" id="lang">
+                <option value="Python">Python</option>
+                <option value="C++">C++</option>
+                <option value="Spanish">Spanish</option>
+                <option value="JavaScript">JavaScript</option>
+            </select>
+            <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+
+</body>
+</html>
