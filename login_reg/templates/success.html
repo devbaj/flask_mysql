@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success!</title>
+</head>
+<body>
+    {% if "userid" in session %}
+    <div class="welcome">
+        <h1>Welcome Back, {{session["current_user"]["first_name"]}}</h1>
+        <p>Logged in with email {{session["current_user"]["email"]}}</p>
+        <form action="/logout" method="post">
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+    {% else %}
+        <p>You are not logged in. Please <a href="/">log in</a> to view this page.</p>
+    {% endif %}
+</body>
+</html>
