@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success Page</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <p class="success-msg">The email address you entered ({{ new_email_html["address"] }}) is a VALID email address! Thank you!</p>
+
+        <h1>Email Addresses Entered:</h1>
+
+        <table>
+        {% for email in emails_html %}
+            <tr>
+                <td>{{email["address"]}}</td>
+                <td>{{email["created_at"]}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+            
+
+    </div>
+
+</body>
+</html>
