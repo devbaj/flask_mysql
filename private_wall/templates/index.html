@@ -10,33 +10,49 @@
     
     <div class="container">
 
-        <div class="registration">
-            <h1>Register</h1>
-            <form action="/process-registration" method="post">
-                <p>First Name</p>
-                <input type="text" name="fname" id="fname">
-                <p>Last Name</p>
-                <input type="text" name="lname" id="lname">
-                <p>Email</p>
-                <input type="text" name="email" id="email">
-                <p>Password</p>
-                <input type="password" name="pw" id="pw">
-                <p>Confirm Password</p>
-                <input type="password" name="pw_confirm" id="pw_confirm">
-                <input type="submit" value="Register">
-            </form>
-        </div>
+        {% if "userid" in session %}
+            <h2>You are already logged in as {{fname_html}}</h2>
+            <a href="/logout"> <button>Log Out</button> </a>
 
-        <div class="login">
-            <h1>Login</h1>
-            <form action="/login" method="post">
-                <p>Email</p>
-                <input type="text" name="email" id="email">
-                <p>Password</p>
-                <input type="password" name="pw" id="pw">
-                <input type="submit" value="Log In">
-            </form>
-        </div>
+        {% else %}
+
+            <div class="registration">
+                <h1>Register</h1>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <p class="{{ category }}">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form action="/process-registration" method="post">
+                    <p>First Name</p>
+                    <input type="text" name="fname" id="fname">
+                    <p>Last Name</p>
+                    <input type="text" name="lname" id="lname">
+                    <p>Email</p>
+                    <input type="text" name="email" id="email">
+                    <p>Password</p>
+                    <input type="password" name="pw" id="pw">
+                    <p>Confirm Password</p>
+                    <input type="password" name="pw_confirm" id="pw_confirm">
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+
+            <div class="login">
+                <h1>Login</h1>
+                <form action="/login" method="post">
+                    <p>Email</p>
+                    <input type="text" name="email" id="email">
+                    <p>Password</p>
+                    <input type="password" name="pw" id="pw">
+                    <input type="submit" value="Log In">
+                </form>
+            </div>
+        
+        {% endif %}
 
     </div>
 

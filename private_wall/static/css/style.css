@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 100%;
+}
+
+.content div{
+    display: inline-block;
+    width: 40%;
+    margin: 2% auto;
+}
+
+div.send-box{
+    display: block;
+}
+
+div.received-msgs{
+    text-align: left;
+}

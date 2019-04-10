@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wall One</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="banner">
+            <h1>My Wall</h1>
+            <div class="right-box">
+                <h2>Welcome, {{fname_html}}</h2>
+                <p><a href="/logout">Log Out</a></p>
+            </div>
+        </div>
+
+        <div class="flashes">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="{{ category }}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <div class="content">
+
+            <div class="recieved-msgs">
+                <h3>______ message(s) for you</h3>
+                <!-- JINJA TEMPLATE FOR MESSAGES RECIEVED BY USER -->
+                    <p class="sender">______ said ______</p>
+                    <p class="message">"______"</p>
+                    <a href="/delete-mesage"><img src="{{ url_for('static', filename='img/trashcan.svg') }}" alt=""></a>
+                
+            </div>
+
+            <div class="send-msgs">
+                <h3>You have sent ______ message(s) so far.</h3>
+                {% for user in users_list_html %}
+                    <div class="send-box">
+                        <form action="/send-message/{{ user['recipient_id'] }}" method="post">
+                        <p>{{ user["first_name"] }} {{ user["last
+                            _name"]}}</p>
+                        <input type="hidden" name="recipient">
+                        <textarea name="msg-content" id="msg {{user['id']}}" cols="30" rows="10"></textarea>
+                        <input type="submit" value="Send">
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
