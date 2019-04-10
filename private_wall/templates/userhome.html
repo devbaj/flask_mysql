@@ -33,16 +33,18 @@
 
         <div class="content">
 
-            <div class="recieved-msgs">
+            <div class="msg-box" id="recieved-msgs">
                 <h3>{{msg_list_html|length}} message(s) for you</h3>
                 {% for message in msg_list_html %}
-                    <p class="sender">{{message["sender_name"]}} said (<span class="timestamp">{{ message["created_at"] }})</span></p>
-                    <p class="message">"{{ message["content"]}}"</p>
-                    <a href="/delete/{{message['messageid']}}"><img src="{{ url_for('static', filename='img/trashcan.svg') }}" alt=""></a>
+                    <div class="user-msg-box">
+                        <p class="sender">{{message["sender_name"]}} said (<span class="timestamp">{{ message["created_at"] }})</span></p>
+                        <p class="message">"{{ message["content"]}}"</p>
+                        <a href="/delete/{{message['messageid']}}"><img src="{{ url_for('static', filename='img/trashcan.svg') }}" alt="delete" class="delete-btn"></a>
+                    </div>
                 {% endfor %}
             </div>
 
-            <div class="send-msgs">
+            <div class="msg-box" id="send-msgs">
                 <h3>You have sent {{sent_count_html["count"]}} message(s) so far.</h3>
                 {% for user in users_list_html %}
                     <div class="send-box">

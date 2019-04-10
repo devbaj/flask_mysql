@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login & Registration</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     
@@ -16,15 +17,16 @@
 
         {% else %}
 
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
             <div class="registration">
                 <h1>Register</h1>
-                {% with messages = get_flashed_messages(with_categories=True) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <p class="{{ category }}">{{ message }}</p>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
 
                 <form action="/process-registration" method="post">
                     <p>First Name</p>
@@ -37,7 +39,7 @@
                     <input type="password" name="pw" id="pw">
                     <p>Confirm Password</p>
                     <input type="password" name="pw_confirm" id="pw_confirm">
-                    <input type="submit" value="Register">
+                    <input type="submit" value="Register" class="form-submit">
                 </form>
             </div>
 
@@ -48,7 +50,7 @@
                     <input type="text" name="email" id="email">
                     <p>Password</p>
                     <input type="password" name="pw" id="pw">
-                    <input type="submit" value="Log In">
+                    <input type="submit" value="Log In" class="form-submit">
                 </form>
             </div>
         

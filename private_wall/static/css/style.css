@@ -3,8 +3,38 @@
     padding: 0;
 }
 
+.registration, .login{
+    display: inline-block;
+    width: 20%;
+    margin: auto;
+    vertical-align: top;
+}
+.form-submit{
+    display: block;
+    padding: 2px 5px;
+    margin: 10px auto;
+}
+
+.success{
+    color: green;
+}
+
+.invalid{
+    color: red;
+}
+
+.error{
+    background-color: red;
+    color: white;
+}
+
+.breach{
+    color: darkred;
+}
+
 .container{
     width: 100%;
+    text-align: center;
 }
 
 .content div{
@@ -17,6 +47,47 @@ div.send-box{
     display: block;
 }
 
-div.received-msgs{
+#received-msgs, #send-msgs{
     text-align: left;
+    border-left: 2px solid black;
+    vertical-align: top;
+}
+
+.msg-box h3{
+    margin-left: 5%;
+}
+
+.send-box textarea{
+    width: 300px;
+    height: 100px;
+}
+
+.send-box{
+    text-align: left;
+    display: block;
+}
+
+.received-msgs p{
+    display:inline-block;
+}
+
+.delete-btn{
+    height: 20px;
+    width: 20px;
+}
+
+div.user-msg-box{
+    display: block;
+    text-align: left;
+    width: 80%;
+}
+p.message{
+    margin-left: 5%;
+    display: inline-block
+}
+img.delete{
+    display:inline-block;
+}
+span.timestamp{
+    color:purple;
 }
