@@ -34,16 +34,16 @@
         <div class="content">
 
             <div class="recieved-msgs">
-                <h3>______ message(s) for you</h3>
-                <!-- JINJA TEMPLATE FOR MESSAGES RECIEVED BY USER -->
-                    <p class="sender">______ said ______</p>
-                    <p class="message">"______"</p>
-                    <a href="/delete-mesage"><img src="{{ url_for('static', filename='img/trashcan.svg') }}" alt=""></a>
-                
+                <h3>{{msg_list_html|length}} message(s) for you</h3>
+                {% for message in msg_list_html %}
+                    <p class="sender">{{message["sender_name"]}} said (<span class="timestamp">{{ message["created_at"] }})</span></p>
+                    <p class="message">"{{ message["content"]}}"</p>
+                    <a href="/delete-message"><img src="{{ url_for('static', filename='img/trashcan.svg') }}" alt=""></a>
+                {% endfor %}
             </div>
 
             <div class="send-msgs">
-                <h3>You have sent ______ message(s) so far.</h3>
+                <h3>You have sent {{sent_count_html["count"]}} message(s) so far.</h3>
                 {% for user in users_list_html %}
                     <div class="send-box">
                         <form action="/send-message/{{ user['recipient_id'] }}" method="post">
