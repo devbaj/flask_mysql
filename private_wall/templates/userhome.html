@@ -38,7 +38,7 @@
                 {% for message in msg_list_html %}
                     <p class="sender">{{message["sender_name"]}} said (<span class="timestamp">{{ message["created_at"] }})</span></p>
                     <p class="message">"{{ message["content"]}}"</p>
-                    <a href="/delete-message"><img src="{{ url_for('static', filename='img/trashcan.svg') }}" alt=""></a>
+                    <a href="/delete/{{message['messageid']}}"><img src="{{ url_for('static', filename='img/trashcan.svg') }}" alt=""></a>
                 {% endfor %}
             </div>
 

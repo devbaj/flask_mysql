@@ -125,7 +125,7 @@ def user_home(id):
     
     # QUERY LIST OF MESSAGES WHERE CURRENT USER IS THE RECIPIENT FOR DISPLAY
     mysql3 = connectToMySQL("private_wall")
-    query3 = "SELECT users.id, users.first_name AS recipient_name, users2.first_name AS sender_name, messages.content, messages.sender_id, messages.created_at FROM users INNER JOIN messages ON users.id = messages.recipient_id AND messages.recipient_id = %(id)s INNER JOIN users AS users2 ON messages.sender_id = users2.id;"
+    query3 = "SELECT messages.id AS messageid, users.id AS userid, users.first_name AS recipient_name, users2.first_name AS sender_name, messages.content, messages.sender_id, messages.created_at FROM users INNER JOIN messages ON users.id = messages.recipient_id AND messages.recipient_id = %(id)s INNER JOIN users AS users2 ON messages.sender_id = users2.id;"
     data3 = {
         "id": session["userid"]
     }
@@ -138,9 +138,6 @@ def user_home(id):
         "id": session["userid"]
     }
     sent_count = mysql4.query_db(query4, data4)
-    print("*"*30)
-    print(sent_count)
-    print("*"*30)
     
     return render_template("userhome.html", fname_html = user_fn[0]["first_name"], users_list_html = users_list, msg_list_html = msg_list, sent_count_html = sent_count[0])
 
@@ -163,6 +160,42 @@ def send_msg(recipient_id):
         flash(u"Message sent!", "success")
     
     return redirect(f"/user/{session['userid']}")
+
+######################
+# SEND MESSAGE
+######################
+@app.route("/delete/<messageid>")
+def delete_msg(messageid):
+    mysql = connectToMySQL("private_wall")
+    query = "SELECT sender_id, recipient_id FROM messages WHERE id = %(messageid)s"
+    data = {
+        "messageid": messageid
+    }
+    msg_owners = mysql.query_db(query, data)
+    
+    if not "userid" in session:
+        flash(u"You must be logged in to delete your messages.", "breach")
+        return redirect("/alert")
+    elif session["userid"] != msg_owners[0]["sender_id"] or session["userid"] != msg_owners[0]["recipient_id"]:
+        flash(u"You have attempted to delete a message that does not belong to you. The authorities are on their way.", "breach")
+        return redirect("/alert")
+    
+    mysql2 = connectToMySQL("private_wall")
+    query2 = "DELETE FROM messages WHERE id = %(id)s"
+    data2 = {
+        "id": messageid
+    }
+    mysql2.query_db(query2, data2)
+    flash(u"Message deleted!", "success")
+    
+    return redirect(f"/user/{session['userid']}")
+
+######################
+# BREACH ALERT
+######################
+@app.route("/alert")
+def alert():
+    return render_template("alert.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
