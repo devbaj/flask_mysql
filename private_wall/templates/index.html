@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login & Registration</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="registration">
+            <h1>Register</h1>
+            <form action="/process-registration" method="post">
+                <p>First Name</p>
+                <input type="text" name="fname" id="fname">
+                <p>Last Name</p>
+                <input type="text" name="lname" id="lname">
+                <p>Email</p>
+                <input type="text" name="email" id="email">
+                <p>Password</p>
+                <input type="password" name="pw" id="pw">
+                <p>Confirm Password</p>
+                <input type="password" name="pw_confirm" id="pw_confirm">
+                <input type="submit" value="Register">
+            </form>
+        </div>
+
+        <div class="login">
+            <h1>Login</h1>
+            <form action="/login" method="post">
+                <p>Email</p>
+                <input type="text" name="email" id="email">
+                <p>Password</p>
+                <input type="password" name="pw" id="pw">
+                <input type="submit" value="Log In">
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>
